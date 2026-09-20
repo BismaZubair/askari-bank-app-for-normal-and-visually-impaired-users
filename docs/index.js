@@ -837,7 +837,7 @@ if (cancelRegistrationBtn) {
                 return;
             }
 
-            // Store the complete user data before redirecting
+ 
             localStorage.setItem("loggedInUser", JSON.stringify(user));
             console.log("✅ User stored:", user.fullName);
 
