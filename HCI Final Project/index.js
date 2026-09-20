@@ -68,12 +68,21 @@
     ];
     
     // Store users in localStorage
-    localStorage.setItem("jsonUsers", JSON.stringify(defaultUsers));
-    console.log("✅ Default users saved to localStorage");
-    console.log("Users:", defaultUsers.map(u => u.username));
-    
-    // Also set jsonUsers variable for current session
-    window.jsonUsers = defaultUsers;
+ const savedUsers = localStorage.getItem("jsonUsers");
+
+    if (!savedUsers) {
+        localStorage.setItem("jsonUsers", JSON.stringify(defaultUsers));
+        window.jsonUsers = defaultUsers;
+        console.log("✅ Default users saved to localStorage");
+    } else {
+        window.jsonUsers = JSON.parse(savedUsers);
+        console.log("✅ Existing users loaded from localStorage");
+    }
+
+    console.log(
+        "Users:",
+        window.jsonUsers.map(u => u.username)
+    );
 })();
 // ═══════════════════════════════════════════
 //  ASKARI BANK — index.js
@@ -396,13 +405,27 @@ let currentModal = null;
 
 function showRegistrationModal() {
     const modal = document.getElementById("registerModal");
+
     if (!modal) return;
-    
+
     modal.classList.add("active");
     currentModal = modal;
-    
-    // Speak the registration information
-    speak("Registration is available at your nearest Askari Bank branch. Please visit any branch with your original CNIC and proof of residence. For assistance, call 111 000 ASK.");
+
+    const registrationError =
+        document.getElementById("registrationError");
+
+    if (registrationError) {
+        registrationError.textContent = "";
+        registrationError.classList.remove("show");
+    }
+
+    setTimeout(() => {
+        document.getElementById("regFullName")?.focus();
+    }, 200);
+
+    speak(
+        "Registration form opened. Please enter your details to create your Askari Bank account."
+    );
 }
 
 function closeRegistrationModal() {
@@ -410,8 +433,210 @@ function closeRegistrationModal() {
         currentModal.classList.remove("active");
         currentModal = null;
     }
+
+    const form = document.getElementById("registrationForm");
+
+    if (form) {
+        form.reset();
+    }
 }
 
+function showRegistrationError(message) {
+    const error = document.getElementById("registrationError");
+
+    if (!error) return;
+
+    error.textContent = message;
+    error.classList.add("show");
+
+    speak(message);
+}
+
+
+function createNewAccount() {
+
+    const fullName =
+        document.getElementById("regFullName").value.trim();
+
+    const username =
+        document.getElementById("regUsername").value.trim();
+
+    const cnic =
+        document.getElementById("regCnic").value.trim();
+
+    const mobile =
+        document.getElementById("regMobile").value.trim();
+
+    const email =
+        document.getElementById("regEmail").value.trim();
+
+    const accountType =
+        document.getElementById("regAccountType").value;
+
+    const password =
+        document.getElementById("regPassword").value;
+
+    const confirmPassword =
+        document.getElementById("regConfirmPassword").value;
+
+
+    // Basic validation
+    if (
+        !fullName ||
+        !username ||
+        !cnic ||
+        !mobile ||
+        !email ||
+        !accountType ||
+        !password ||
+        !confirmPassword
+    ) {
+        showRegistrationError("Please fill in all fields.");
+        return false;
+    }
+
+
+    // Password check
+    if (password !== confirmPassword) {
+        showRegistrationError("Passwords do not match.");
+        return false;
+    }
+
+
+    // Password length
+    if (password.length < 6) {
+        showRegistrationError(
+            "Password must contain at least 6 characters."
+        );
+        return false;
+    }
+
+
+    // Get existing users
+    const users =
+        JSON.parse(localStorage.getItem("jsonUsers")) || [];
+
+
+    // Check duplicate username
+    const usernameExists = users.some(
+        user =>
+            user.username.toLowerCase() === username.toLowerCase()
+    );
+
+    if (usernameExists) {
+        showRegistrationError(
+            "This username already exists. Please choose another username."
+        );
+        return false;
+    }
+
+
+    // Generate demo account number
+    const accountNumber =
+        "300" + Date.now().toString().slice(-9);
+
+
+    // Create new user
+    const newUser = {
+
+        id: Date.now(),
+
+        username: username,
+
+        password: password,
+
+        fullName: fullName,
+
+        cnic: cnic,
+
+        accountNumber: accountNumber,
+
+        balance: 0,
+
+        monthlyExpense: 0,
+
+        dateOfBirth: "Not provided",
+
+        gender: "Not provided",
+
+        nationality: "Pakistani",
+
+        accountType: accountType,
+
+        iban: "PK36 ASKB " +
+              accountNumber.replace(/-/g, ""),
+
+        branchCode: "0042",
+
+        branchName: "Askari Bank",
+
+        openingDate:
+            new Date().toLocaleDateString("en-GB"),
+
+        mobile: mobile,
+
+        email: email,
+
+        address: "Not provided",
+
+        cardNumber: "Not assigned",
+
+        cardType: "Debit Card",
+
+        expiryDate: "Not assigned",
+
+        beneficiaries: []
+
+    };
+
+
+    // Add new user
+    users.push(newUser);
+
+
+    // Save ALL users
+    localStorage.setItem(
+        "jsonUsers",
+        JSON.stringify(users)
+    );
+
+
+    // Update current session variable
+    window.jsonUsers = users;
+
+
+    console.log("✅ New account created:", newUser);
+
+
+    // Close registration modal
+    closeRegistrationModal();
+
+
+    // Put credentials into login form
+    const usernameInput =
+        document.getElementById("usernameInput");
+
+    const passwordInput =
+        document.getElementById("passwordInput");
+
+    if (usernameInput) {
+        usernameInput.value = username;
+    }
+
+    if (passwordInput) {
+        passwordInput.value = password;
+    }
+
+
+    speak(
+        "Your Askari Bank account has been created successfully. Your username is " +
+        username +
+        ". You can now login."
+    );
+
+
+    return true;
+}
 // ─────────────────────────────────────────
 //  DOUBLE-TAP DETECTION
 // ─────────────────────────────────────────
@@ -504,7 +729,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const forgotLink    = document.getElementById("forgotLink");
     const doubleTapHint = document.getElementById("doubleTapHint");
     const closeModalBtn = document.getElementById("closeModalBtn");
-    const modalGotItBtn = document.getElementById("modalGotItBtn");
+
 
     // ── Voice init ──
     speechSynthesis.onvoiceschanged = initVoice;
@@ -557,12 +782,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    if (modalGotItBtn) {
-        modalGotItBtn.addEventListener("click", () => {
-            closeRegistrationModal();
-            speak("Thank you for your interest in Askari Bank.");
-        });
-    }
+    // ── REGISTRATION FORM SUBMIT ──
+const registrationForm = document.getElementById("registrationForm");
+const cancelRegistrationBtn = document.getElementById("cancelRegistrationBtn");
+
+if (registrationForm) {
+    registrationForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        createNewAccount();
+    });
+}
+
+// ── CANCEL REGISTRATION ──
+if (cancelRegistrationBtn) {
+    cancelRegistrationBtn.addEventListener("click", () => {
+        closeRegistrationModal();
+    });
+}
+
+
     
     // Close modal when clicking outside
     const modalOverlay = document.getElementById("registerModal");
@@ -661,47 +900,9 @@ document.addEventListener("DOMContentLoaded", () => {
 //  JSON DATA INTEGRATION (ADDED - NO CHANGES ABOVE)
 // ═══════════════════════════════════════════
 
-let jsonUsers = [];
 
-// Load users from JSON
-fetch('users.json')
-    .then(res => res.json())
-    .then(data => {
-        if (data.users) {
-            jsonUsers = data.users;
-            localStorage.setItem("jsonUsers", JSON.stringify(jsonUsers));
-            console.log("✅ JSON users loaded:", jsonUsers.length, "users");
-        }
-    })
-    .catch(err => console.error("Error loading users.json:", err));
 
 
 // Override login behavior WITHOUT removing original
-document.addEventListener("DOMContentLoaded", () => {
 
-    const loginBtn = document.getElementById("loginBtn");
-    if (!loginBtn) return;
 
-    loginBtn.addEventListener("click", function () {
-
-        const usernameInput = document.getElementById("usernameInput");
-        const passwordInput = document.getElementById("passwordInput");
-
-        const username = usernameInput ? usernameInput.value.trim() : "";
-        const password = passwordInput ? passwordInput.value.trim() : "";
-
-        if (!jsonUsers.length) return;
-
-        const user = jsonUsers.find(u =>
-            u.username === username && u.password === password
-        );
-
-        if (user) {
-            // Store full user data for next pages
-            localStorage.setItem("loggedInUser", JSON.stringify(user));
-            console.log("User saved from JSON");
-        }
-
-    });
-
-});
