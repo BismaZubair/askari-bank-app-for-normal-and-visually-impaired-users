@@ -23,44 +23,153 @@
 <!-- ═══════════════════════════════════════════
      REGISTRATION MODAL (POPUP)
 ════════════════════════════════════════════ -->
+<!-- REGISTRATION MODAL -->
 <div class="modal-overlay" id="registerModal">
     <div class="modal-container">
+
         <div class="modal-header">
             <i class="fas fa-user-plus modal-icon"></i>
-            <h3>Registration Information</h3>
+            <h3>Create Your Account</h3>
             <button class="modal-close" id="closeModalBtn">&times;</button>
         </div>
-        <div class="modal-body">
-            <div class="modal-message">
-                <i class="fas fa-university"></i>
-                <p>Thank you for your interest in Askari Bank!</p>
+
+        <form id="registrationForm">
+
+            <div class="modal-body">
+
+                <p class="registration-intro">
+                    Enter your details to create your Askari Bank account.
+                </p>
+
+                <div class="error-msg" id="registrationError" aria-live="polite"></div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regFullName">
+                        <i class="fas fa-user"></i> Full Name
+                    </label>
+                    <input
+                        type="text"
+                        id="regFullName"
+                        class="input-field"
+                        placeholder="Enter your full name"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regUsername">
+                        <i class="fas fa-user-circle"></i> Username
+                    </label>
+                    <input
+                        type="text"
+                        id="regUsername"
+                        class="input-field"
+                        placeholder="Choose a username"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regCnic">
+                        <i class="fas fa-id-card"></i> CNIC
+                    </label>
+                    <input
+                        type="text"
+                        id="regCnic"
+                        class="input-field"
+                        placeholder="42101-1234567-8"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regMobile">
+                        <i class="fas fa-phone"></i> Mobile Number
+                    </label>
+                    <input
+                        type="tel"
+                        id="regMobile"
+                        class="input-field"
+                        placeholder="+92 300 1234567"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regEmail">
+                        <i class="fas fa-envelope"></i> Email
+                    </label>
+                    <input
+                        type="email"
+                        id="regEmail"
+                        class="input-field"
+                        placeholder="Enter your email"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regAccountType">
+                        <i class="fas fa-wallet"></i> Account Type
+                    </label>
+
+                    <select id="regAccountType" class="input-field" required>
+                        <option value="">Select account type</option>
+                        <option value="Current Account">Current Account</option>
+                        <option value="Savings Account">Savings Account</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regPassword">
+                        <i class="fas fa-lock"></i> Password
+                    </label>
+                    <input
+                        type="password"
+                        id="regPassword"
+                        class="input-field"
+                        placeholder="Create a password"
+                        required
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="regConfirmPassword">
+                        <i class="fas fa-lock"></i> Confirm Password
+                    </label>
+                    <input
+                        type="password"
+                        id="regConfirmPassword"
+                        class="input-field"
+                        placeholder="Confirm your password"
+                        required
+                    />
+                </div>
+
             </div>
-            <div class="modal-details">
-                <div class="detail-item">
-                    <i class="fas fa-building"></i>
-                    <span>Please visit your nearest Askari Bank branch to complete your registration.</span>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-id-card"></i>
-                    <span>Bring your original CNIC / NICOP along with proof of residence.</span>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>For assistance, call our helpline: 111-000-ASK (111-000-275)</span>
-                </div>
-                <div class="detail-item">
-                    <i class="fas fa-globe"></i>
-                    <span>Visit our website: www.askaribank.com.pk</span>
-                </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="modal-btn"
+                    id="cancelRegistrationBtn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="modal-btn"
+                    id="createAccountBtn"
+                >
+                    <i class="fas fa-user-plus"></i>
+                    Create Account
+                </button>
+
             </div>
-            <div class="modal-note">
-                <i class="fas fa-info-circle"></i>
-                <span>Online registration will be available soon!</span>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="modal-btn" id="modalGotItBtn">Got It</button>
-        </div>
+
+        </form>
     </div>
 </div>
 

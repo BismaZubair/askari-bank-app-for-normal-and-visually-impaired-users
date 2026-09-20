@@ -896,13 +896,4 @@ if (cancelRegistrationBtn) {
 
 });
 
-// ═══════════════════════════════════════════
-//  JSON DATA INTEGRATION (ADDED - NO CHANGES ABOVE)
-// ═══════════════════════════════════════════
-
-
-
-
-// Override login behavior WITHOUT removing original
-
 
