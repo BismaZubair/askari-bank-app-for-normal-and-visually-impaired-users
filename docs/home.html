@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Home</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- MAIN APP CONTAINER -->
+<div class="app-container">
+
+    <!-- Top Nav Bar -->
+    <div class="top-nav">
+        <button class="icon-btn" id="powerBtn" title="Logout">
+            <i class="fas fa-power-off"></i>
+        </button>
+        <div class="bank-logo">
+            <span class="logo-askari">askari</span><span class="logo-bank">bank</span>
+            <span class="logo-diamond">&#9670;</span>
+            <div class="logo-sub">LIMITED</div>
+        </div>
+        <button class="icon-btn" id="menuBtn" title="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- AssistPay Bar -->
+    <div class="assist-bar">
+        <div class="assist-left">
+            <div class="assist-icon"><i class="fas fa-microphone"></i></div>
+            <div class="assist-text">
+                <span class="assist-title">AssistPay</span>
+                <span class="assist-sub">Voice Assistant is On</span>
+            </div>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="assistToggle" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Live Voice Caption Bar -->
+    <div class="caption-bar" id="captionBar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- Account Card (beautiful gradient blue) -->
+    <div class="account-card">
+        <div class="welcome-label">Welcome Back</div>
+        <div class="account-type">CURRENT</div>
+        <div class="account-number-row">
+            <span class="account-number" id="accountNumber">&#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679;</span>
+            <button class="eye-btn" id="toggleAccountNumber" title="Show/Hide Account Number">
+                <i class="fas fa-eye-slash"></i>
+            </button>
+        </div>
+        <div class="account-balance-row">
+            <span class="currency">PKR</span>
+            <span class="balance" id="balanceText">X X X X X X</span>
+            <button class="eye-btn" id="toggleBalance" title="Show/Hide Balance">
+                <i class="fas fa-eye-slash"></i>
+            </button>
+            <button class="request-pay-btn" id="requestPayBtn">
+                <i class="fas fa-qrcode"></i>
+                <span>Request To Pay</span>
+            </button>
+        </div>
+        <div class="card-actions">
+            <button class="card-action-btn" id="miniStmtBtn">
+                <i class="fas fa-list-alt"></i> Mini Statement
+            </button>
+            <button class="card-action-btn" id="shareBtn">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+        </div>
+        <div class="login-time" id="loginTime"></div>
+    </div>
+
+    <!-- Frequently Used -->
+    <div class="section-header">
+        <span class="section-title">Frequently Used</span>
+        <button class="edit-btn" id="editFreqBtn">EDIT</button>
+    </div>
+    <div class="freq-grid">
+        <div class="freq-item tappable" data-label="Funds Transfer" data-page="fundsTransfer.html">
+            <div class="freq-icon"><i class="fas fa-exchange-alt"></i></div>
+            <span>Funds Transfer</span>
+        </div>
+        <div class="freq-item tappable" data-label="Scan To Pay" data-page="scanToPay.html">
+            <div class="freq-icon"><i class="fas fa-qrcode"></i></div>
+            <span>Scan To Pay</span>
+        </div>
+        <div class="freq-item tappable" data-label="Card Discounts" data-page="cardDiscount.html">
+            <div class="freq-icon"><i class="fas fa-tags"></i></div>
+            <span>Card Discounts</span>
+        </div>
+    </div>
+
+    <!-- Quick Access -->
+    <div class="section-header">
+        <span class="section-title">Quick Access</span>
+        <button class="view-all-btn" id="viewAllBtn">VIEW ALL</button>
+    </div>
+    <div class="quick-grid">
+        <div class="quick-item tappable" data-label="Bill Payments" data-page="bill_payments.html">
+            <div class="quick-icon"><i class="fas fa-flag"></i></div>
+            <span>Bill Payments</span>
+        </div>
+        <div class="quick-item tappable" data-label="Bill Split" data-page="bill_split.html">
+            <div class="quick-icon"><i class="fas fa-handshake"></i></div>
+            <span>Bill-Split</span>
+        </div>
+        <div class="quick-item tappable" data-label="Purchase Tickets" data-page="purchase_tickets.html">
+            <div class="quick-icon"><i class="fas fa-ticket-alt"></i></div>
+            <span>Purchase Tickets</span>
+        </div>
+        <div class="quick-item tappable" data-label="A F P Guest Room Booking" data-page="afp_booking.html">
+            <div class="quick-icon"><i class="fas fa-concierge-bell"></i></div>
+            <span>AFP Guest Room Booking</span>
+        </div>
+        <div class="quick-item tappable" data-label="Beneficiary Management" data-page="beneficiary.html">
+            <div class="quick-icon"><i class="fas fa-user-plus"></i></div>
+            <span>Beneficiary Management</span>
+        </div>
+        <div class="quick-item tappable" data-label="Cards Management" data-page="cards_management.html">
+            <div class="quick-icon"><i class="fas fa-credit-card"></i></div>
+            <span>Cards Management</span>
+        </div>
+        <div class="quick-item tappable" data-label="M Tag Payments" data-page="mtag.html">
+            <div class="quick-icon quick-one"><span class="one-label">ONE</span></div>
+            <span>M-Tag Payments</span>
+        </div>
+    </div>
+
+    <!-- Bottom Nav - Beautiful Gradient Blue same as account card, NOT FIXED -->
+    <div class="bottom-nav">
+        <button class="nav-btn active" data-nav="atm">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>ATM Locator</span>
+        </button>
+        <button class="nav-btn" data-nav="messages">
+            <i class="fas fa-envelope"></i>
+            <span>Message Box</span>
+            <span class="badge">1</span>
+        </button>
+        <button class="nav-btn center-nav" data-nav="edge">
+            <div class="center-icon">
+                <i class="fas fa-gem"></i>
+            </div>
+            <span>Askari Edge</span>
+        </button>
+        <button class="nav-btn" data-nav="alerts">
+            <i class="fas fa-bell"></i>
+            <span>Transaction Alerts</span>
+        </button>
+        <button class="nav-btn" data-nav="profile" id="profileNavBtn">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </button>
+    </div>
+
+</div>
+
+<script src="home.js"></script>
+</body>
+</html>

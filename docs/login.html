@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Askari Bank - Login Steps</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+</head>
+<body>
+
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <div class="logo-section">
+        <div class="bank-logo">
+            <span class="logo-askari">askari</span><span class="logo-bank">bank</span>
+            <span class="logo-diamond">&#9670;</span>
+        </div>
+        <div class="logo-sub">LIMITED</div>
+        <div class="digital-tag">
+            <i class="fas fa-shield-alt"></i>
+            <span>Digital Banking</span>
+        </div>
+    </div>
+
+    <div class="info-box" id="voiceText">
+        🔊 Welcome. Start authentication.
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps">
+
+        <div class="step" id="step1">
+            <div class="left">
+                <div class="circle">1</div>
+                <div class="line"></div>
+            </div>
+            <div class="content">
+                <p>Fingerprint Recognition</p>
+                <button onclick="startFingerprint()">Scan</button>
+            </div>
+        </div>
+
+        <div class="step" id="step2">
+            <div class="left">
+                <div class="circle">2</div>
+                <div class="line"></div>
+            </div>
+            <div class="content">
+                <p>Facial Recognition</p>
+                <button onclick="startFace()">Scan</button>
+            </div>
+        </div>
+
+       
+
+    </div>
+
+    <!-- OVERLAY SCANNER -->
+    <div id="overlay" class="overlay hidden">
+        <div id="scannerBox"></div>
+        <p id="overlayText">Scanning...</p>
+    </div>
+
+    <div class="bottom-buttons">
+        <button class="back" onclick="goBack()">← Back</button>
+        <button class="login" id="finalLogin" disabled>Login</button>
+    </div>
+
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>

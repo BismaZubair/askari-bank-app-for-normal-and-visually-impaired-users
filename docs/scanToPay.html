@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Scan To Pay</title>
+    <link rel="stylesheet" href="scanToPay.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="page-title">Scan To Pay</span>
+        <div class="nav-spacer"></div>
+    </div>
+
+    <!-- AssistPay Bar (Voice Assistant Toggle) -->
+    <div class="assist-bar">
+        <div class="assist-left">
+            <div class="assist-icon"><i class="fas fa-microphone"></i></div>
+            <div class="assist-text">
+                <span class="assist-title">AssistPay</span>
+                <span class="assist-sub">Voice Assistant is On</span>
+            </div>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="assistToggle" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Caption Bar -->
+    <div class="caption-bar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- Camera Viewfinder Area -->
+    <div class="camera-area" id="cameraArea">
+
+        <!-- Live camera feed -->
+        <video id="cameraFeed" autoplay playsinline muted></video>
+
+        <!-- Dark overlay when camera not active -->
+        <div class="camera-overlay" id="cameraOverlay">
+            <i class="fas fa-camera overlay-icon"></i>
+            <p class="overlay-text">Camera not active</p>
+        </div>
+
+        <!-- Top controls bar -->
+        <div class="cam-controls">
+            <button class="cam-ctrl-btn" id="expandBtn" title="Expand viewfinder">
+                <i class="fas fa-expand-alt"></i>
+            </button>
+            <button class="cam-ctrl-btn" id="flashBtn" title="Toggle flash">
+                <i class="fas fa-bolt"></i>
+            </button>
+        </div>
+
+        <!-- Gallery button -->
+        <button class="gallery-btn tappable" id="galleryBtn"
+                data-label="Scan from Gallery. Upload a QR code image from your gallery.">
+            <i class="fas fa-images"></i>
+            <span>Scan From Gallery</span>
+        </button>
+        <!-- hidden file input for gallery -->
+        <input type="file" id="galleryInput" accept="image/*" style="display:none"/>
+
+        <!-- QR Viewfinder frame -->
+        <div class="viewfinder" id="viewfinder">
+            <div class="vf-corner top-left"></div>
+            <div class="vf-corner top-right"></div>
+            <div class="vf-corner bottom-left"></div>
+            <div class="vf-corner bottom-right"></div>
+            <!-- scanning line animation -->
+            <div class="scan-line" id="scanLine"></div>
+        </div>
+
+        <!-- Status badge shown inside viewfinder when scanning -->
+        <div class="scan-status" id="scanStatus"></div>
+
+    </div>
+
+    <!-- Bottom instruction panel -->
+    <div class="bottom-panel">
+        <p class="instruction-text" id="instructionText">
+            Point your camera at a QR code to pay
+        </p>
+        <div class="hint-row">
+            <div class="hint-item">
+                <i class="fas fa-qrcode hint-icon"></i>
+                <span>Align QR inside frame</span>
+            </div>
+            <div class="hint-item">
+                <i class="fas fa-sun hint-icon"></i>
+                <span>Ensure good lighting</span>
+            </div>
+            <div class="hint-item">
+                <i class="fas fa-hand-paper hint-icon"></i>
+                <span>Hold steady</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="scanToPay.js"></script>
+</body>
+</html>

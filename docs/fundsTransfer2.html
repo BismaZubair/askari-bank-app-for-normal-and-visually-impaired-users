@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Funds Transfer Confirm</title>
+    <link rel="stylesheet" href="fundsTransfer2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="page-title">Funds Transfer</span>
+        <div class="nav-spacer"></div>
+    </div>
+
+    <!-- Voice Caption Bar -->
+    <div class="caption-bar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- Beneficiary Select Section -->
+    <div class="page-body">
+
+        <div class="section-label">Beneficiary Select</div>
+
+        <!-- Selected Beneficiary Card -->
+        <div class="bene-card" id="beneCard">
+            <div class="bene-avatar" id="beneAvatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="bene-info">
+                <div class="bene-name" id="beneName">—</div>
+                <div class="bene-acc" id="beneAcc">xxxx-xxxxxxxxx-xxx</div>
+                <div class="bene-bank" id="beneBank">—</div>
+            </div>
+            <div class="bene-actions">
+                <button class="action-icon fav-btn"><i class="far fa-star"></i></button>
+                <button class="action-icon edit-icon"><i class="fas fa-pencil-alt"></i></button>
+                <button class="action-icon del-icon"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+
+        <!-- Instruction hint -->
+        <div class="hint-box">
+            <i class="fas fa-info-circle"></i>
+            <span>Triple tap anywhere to confirm &amp; proceed. Double tap to go back.</span>
+        </div>
+
+    </div>
+
+    <!-- Bottom Buttons -->
+    <div class="bottom-actions">
+        <button class="bottom-btn back-action-btn" id="backActionBtn">Back</button>
+        <button class="bottom-btn next-btn" id="nextBtn">Next</button>
+    </div>
+
+</div>
+
+<script src="fundsTransfer2.js"></script>
+</body>
+</html>

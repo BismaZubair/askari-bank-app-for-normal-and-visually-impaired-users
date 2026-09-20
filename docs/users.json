@@ -1,0 +1,104 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "bisma123",
+      "password": "bisma123",
+      "fullName": "Bisma Zubair",
+      "cnic": "42101-1234567-8",
+      "accountNumber": "3001-2345-6789",
+      "balance": 175000,
+      "monthlyExpense": 45800,
+      "dateOfBirth": "12 May 1992",
+      "gender": "Female",
+      "nationality": "Pakistani",
+      "accountType": "Current Account",
+      "iban": "PK36 ASKB 1234 5678 9012 3456",
+      "branchCode": "0042",
+      "branchName": "DHA Phase 2, Karachi",
+      "openingDate": "15 March 2018",
+      "mobile": "+92 300 1234567",
+      "email": "bisma.zubair@askaribank.com",
+      "address": "House #45, Street 12, DHA Phase 2, Karachi",
+      "cardNumber": "4532-1234-5678-9012",
+      "cardType": "Gold Debit Card",
+      "expiryDate": "08/2027",
+      "beneficiaries": [
+        {
+          "id": 1,
+          "name": "Ayesha Khan",
+          "cnic": "42101-7654321-0",
+          "bank": "Meezan Bank",
+          "accountNumber": "MEZN-1234-5678-9012",
+          "nickname": "Ayesha"
+        },
+        {
+          "id": 2,
+          "name": "Bilal Ahmed",
+          "cnic": "42101-9876543-2",
+          "bank": "Sadapay",
+          "accountNumber": "SADA-9876-5432-1098",
+          "nickname": "Bilal"
+        },
+        {
+          "id": 3,
+          "name": "Zara Tariq",
+          "cnic": "42101-5556667-9",
+          "bank": "Easypaisa",
+          "accountNumber": "EASY-4567-8901-2345",
+          "nickname": "Zara"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "username": "aleeza456",
+      "password": "aleeza456",
+      "fullName": "Aleeza Asif",
+      "cnic": "42201-9876543-2",
+      "accountNumber": "5002-3456-7890-1234",
+      "balance": 250000,
+      "monthlyExpense": 72500,
+      "dateOfBirth": "25 November 1990",
+      "gender": "Male",
+      "nationality": "Pakistani",
+      "accountType": "Platinum Account",
+      "iban": "PK36 ASKB 9876 5432 1098 7654",
+      "branchCode": "0089",
+      "branchName": "Gulberg, Lahore",
+      "openingDate": "22 July 2016",
+      "mobile": "+92 321 9876543",
+      "email": "aleeza.asif@askaribank.com",
+      "address": "Apt 7B, Park View Towers, Gulberg, Lahore",
+      "cardNumber": "5467-8901-2345-6789",
+      "cardType": "Platinum Credit Card",
+      "expiryDate": "12/2028",
+      "beneficiaries": [
+        {
+          "id": 1,
+          "name": "Hamza Ali",
+          "cnic": "42201-1234567-8",
+          "bank": "Meezan Bank",
+          "accountNumber": "MEZN-8765-4321-0987",
+          "nickname": "Hamza"
+        },
+        {
+          "id": 2,
+          "name": "Fatima Zafar",
+          "cnic": "42201-5556667-9",
+          "bank": "Sadapay",
+          "accountNumber": "SADA-3456-7890-1234",
+          "nickname": "Fatima"
+        },
+        {
+          "id": 3,
+          "name": "Omar Riaz",
+          "cnic": "42201-2223334-5",
+          "bank": "Easypaisa",
+          "accountNumber": "EASY-6789-0123-4567",
+          "nickname": "Omar"
+        }
+      ]
+    }
+  ]
+}
