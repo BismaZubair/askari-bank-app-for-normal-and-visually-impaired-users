@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Face - Admin</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #0a0f1e, #0a1a2f);
+            color: white;
+            padding: 50px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #00c8ff;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        button {
+            background: linear-gradient(135deg, #00c8ff, #0080aa);
+            cursor: pointer;
+        }
+        .success { color: #00ff00; }
+        .error { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Upload Face Image</h1>
+        <form id="uploadForm">
+            <input type="text" id="userId" placeholder="Username (e.g., erra123)" required>
+            <input type="text" id="userName" placeholder="Full Name (e.g., Erra Sheikh)" required>
+            <input type="file" id="faceImage" accept="image/*" required>
+            <button type="submit">Upload Face</button>
+        </form>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'http://localhost:3001';
+        
+        document.getElementById('uploadForm').onsubmit = async (e) => {
+            e.preventDefault();
+            
+            const userId = document.getElementById('userId').value;
+            const userName = document.getElementById('userName').value;
+            const file = document.getElementById('faceImage').files[0];
+            
+            if (!userId || !userName || !file) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('image', file);
+            formData.append('userId', userId);
+            formData.append('userName', userName);
+            
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = 'Uploading...';
+            
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/upload-face`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    statusDiv.innerHTML = `<span class="success">✅ ${result.message}</span>`;
+                    document.getElementById('uploadForm').reset();
+                } else {
+                    statusDiv.innerHTML = `<span class="error">❌ ${result.message}</span>`;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<span class="error">❌ Upload failed: ${error.message}</span>`;
+            }
+        };
+    </script>
+</body>
+</html>

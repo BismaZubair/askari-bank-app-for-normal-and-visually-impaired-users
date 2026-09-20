@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Funds Transfer Amount</title>
+    <link rel="stylesheet" href="fundsTransfer3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="page-title">Funds Transfer</span>
+        <div class="nav-spacer"></div>
+    </div>
+
+    <!-- Voice Caption Bar -->
+    <div class="caption-bar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- Page Body -->
+    <div class="page-body">
+
+        <!-- FROM -->
+        <div class="section-label">FROM</div>
+        <div class="info-card">
+            <div class="info-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="info-detail">
+                <div class="info-title">Current Account</div>
+                <div class="info-sub" id="fromAccountNumber">xxxx-xxxxxxxxx-xxx</div>
+                <div class="info-balance" id="fromBalance">--</div>
+            </div>
+        </div>
+
+        <!-- TO -->
+        <div class="section-label">TO</div>
+        <div class="info-card">
+            <div class="info-avatar bene-avatar-display" id="toAvatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="info-detail">
+                <div class="info-title" id="toName">—</div>
+                <div class="info-sub" id="toBank">—</div>
+                <div class="info-sub" id="toAcc">xxxx-xxxxxxxxx-xxx</div>
+            </div>
+            <i class="fas fa-chevron-right card-arrow"></i>
+        </div>
+
+        <!-- SELECT PURPOSE -->
+        <div class="section-label">SELECT PURPOSE</div>
+        <div class="info-card clickable" id="purposeCard">
+            <div class="purpose-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="info-detail">
+                <div class="info-title">Other</div>
+            </div>
+            <i class="fas fa-chevron-right card-arrow"></i>
+        </div>
+
+        <!-- AMOUNT -->
+        <div class="section-label-row">
+            <span class="section-label no-margin">AMOUNT</span>
+            <span class="available-balance" id="availableBalance">Available Balance: --</span>
+        </div>
+
+        <!-- Input Method Toggle -->
+        <div class="input-method-toggle">
+            <button class="method-btn active" id="voiceMethodBtn">
+                <i class="fas fa-microphone"></i>
+                <span>Voice Input</span>
+            </button>
+            <button class="method-btn" id="keyboardMethodBtn">
+                <i class="fas fa-keyboard"></i>
+                <span>Keyboard Input</span>
+            </button>
+        </div>
+
+        <!-- Voice Mic Button (shown when voice method is active) -->
+        <button class="mic-btn" id="micBtn">
+            <i class="fas fa-microphone" id="micIcon"></i>
+            <span id="micLabel">Tap to speak amount</span>
+        </button>
+
+        <!-- Amount Display Card -->
+        <div class="amount-display-card" id="amountCard">
+            <span class="amount-currency">PKR</span>
+            <span class="amount-value" id="amountDisplay">—</span>
+        </div>
+
+        <!-- Keyboard Input Section (hidden by default) -->
+        <div class="keyboard-input-section" id="keyboardSection" style="display: none;">
+            <div class="amount-input-wrapper">
+                <span class="currency-symbol">₨</span>
+                <input type="number" id="amountInput" class="amount-input" placeholder="Enter amount" min="1" step="100">
+            </div>
+            <div class="quick-amount-buttons">
+                <button class="quick-amount" data-amount="500">₨ 500</button>
+                <button class="quick-amount" data-amount="1000">₨ 1,000</button>
+                <button class="quick-amount" data-amount="5000">₨ 5,000</button>
+                <button class="quick-amount" data-amount="10000">₨ 10,000</button>
+                <button class="quick-amount" data-amount="25000">₨ 25,000</button>
+                <button class="quick-amount" data-amount="50000">₨ 50,000</button>
+            </div>
+            <button class="set-amount-btn" id="setAmountBtn">Set Amount</button>
+        </div>
+
+        <div class="view-limits-row">
+            <button class="view-limits-btn" id="viewLimitsBtn">View Payment Limits</button>
+        </div>
+
+        <!-- Gesture hint -->
+        <div class="hint-box">
+            <i class="fas fa-info-circle"></i>
+            <span>Triple tap anywhere to confirm &amp; proceed. Double tap to go back.</span>
+        </div>
+
+    </div>
+
+    <!-- Bottom Next Button -->
+    <div class="bottom-actions">
+        <button class="next-btn" id="nextBtn">Next</button>
+    </div>
+
+</div>
+
+<script src="fundsTransfer3.js"></script>
+</body>
+</html>

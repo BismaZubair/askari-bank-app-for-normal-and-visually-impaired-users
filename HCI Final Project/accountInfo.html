@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Account Information</title>
+    <link rel="stylesheet" href="accountInfo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+       <button class="back-btn" id="backBtn">
+    <i class="fas fa-chevron-left"></i>
+</button>
+
+<script>
+document.getElementById("backBtn").addEventListener("click", function() {
+    window.location.href = "settings.html";
+});
+</script>               
+        <span class="page-title">Account Information</span>
+        <button class="vi-mode-btn" id="viModeBtn" title="Visually Impaired Mode">
+            <i class="fas fa-eye-slash"></i>
+        </button>
+    </div>
+
+    <!-- AssistPay Bar (Voice Assistant Toggle) -->
+    <div class="assist-bar">
+        <div class="assist-left">
+            <div class="assist-icon"><i class="fas fa-microphone"></i></div>
+            <div class="assist-text">
+                <span class="assist-title">AssistPay</span>
+                <span class="assist-sub">Voice Assistant is On</span>
+            </div>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="assistToggle" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Caption Bar -->
+    <div class="caption-bar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-body">
+
+        <!-- Quick Stats Cards -->
+        <div class="stats-row">
+            <div class="stat-card tappable" data-label="Total Balance: 62,740 rupees and 33 paisa">
+                <i class="fas fa-wallet stat-icon"></i>
+                <span class="stat-label">Total Balance</span>
+                <span class="stat-value" id="totalBalance">--</span>
+            </div>
+            <div class="stat-card tappable" data-label="Total Expense this month: 12,450 rupees and 50 paisa">
+                <i class="fas fa-chart-line stat-icon"></i>
+                <span class="stat-label">Monthly Expense</span>
+                <span class="stat-value expense" id="monthlyExpense">--</span>
+            </div>
+        </div>
+
+        <!-- Account Details Section -->
+        <div class="section-title">
+            <i class="fas fa-user-circle"></i>
+            <span>Personal Information</span>
+        </div>
+
+        <div class="info-card">
+            <div class="info-row">
+                <div class="info-label">Full Name</div>
+                <div class="info-value" id="fullName">--</div>
+                <button class="copy-btn tappable" data-copy="fullName" data-label="Copy full name: Alice Johnsan">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Date of Birth</div>
+                <div class="info-value" id="dob">--</div>
+                <button class="copy-btn tappable" data-copy="dob" data-label="Copy date of birth: 15 March 1988">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Gender</div>
+                <div class="info-value" id="gender">--</div>
+                <button class="copy-btn tappable" data-copy="gender" data-label="Copy gender: Female">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">CNIC / NICOP</div>
+                <div class="info-value" id="cnic">*****-*******-*</div>
+                <button class="eye-toggle-small" id="toggleCnic" title="Show/Hide CNIC">
+                    <i class="fas fa-eye-slash"></i>
+                </button>
+                <button class="copy-btn tappable" data-copy="cnic" data-label="Copy CNIC number">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Nationality</div>
+                <div class="info-value" id="nationality">--</div>
+                <button class="copy-btn tappable" data-copy="nationality" data-label="Copy nationality: Pakistani">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <i class="fas fa-university"></i>
+            <span>Account Details</span>
+        </div>
+
+        <div class="info-card">
+            <div class="info-row">
+                <div class="info-label">Account Number</div>
+                <div class="info-value" id="accountNumber">****-****-****-****</div>
+                <button class="eye-toggle-small" id="toggleAccount" title="Show/Hide Account Number">
+                    <i class="fas fa-eye-slash"></i>
+                </button>
+                <button class="copy-btn tappable" data-copy="accountNumber" data-label="Copy account number">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Account Type</div>
+                <div class="info-value" id="accountType">--</div>
+                <button class="copy-btn tappable" data-copy="accountType" data-label="Copy account type: Current Account">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">IBAN</div>
+                <div class="info-value" id="iban">--</div>
+                <button class="copy-btn tappable" data-copy="iban" data-label="Copy IBAN: PK36 ASKB 0000 1234 5678 9012">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Branch Code</div>
+                <div class="info-value" id="branchCode">--</div>
+                <button class="copy-btn tappable" data-copy="branchCode" data-label="Copy branch code: 0123">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Branch Name</div>
+                <div class="info-value" id="branchName">--</div>
+                <button class="copy-btn tappable" data-copy="branchName" data-label="Copy branch name: Blue Area, Islamabad">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Account Opening Date</div>
+                <div class="info-value" id="openingDate">--</div>
+                <button class="copy-btn tappable" data-copy="openingDate" data-label="Copy account opening date: 10 June 2015">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <i class="fas fa-phone-alt"></i>
+            <span>Contact Information</span>
+        </div>
+
+        <div class="info-card">
+            <div class="info-row">
+                <div class="info-label">Registered Mobile</div>
+                <div class="info-value" id="mobile">--</div>
+                <button class="eye-toggle-small" id="toggleMobile" title="Show/Hide Mobile Number">
+                    <i class="fas fa-eye-slash"></i>
+                </button>
+                <button class="copy-btn tappable" data-copy="mobile" data-label="Copy mobile number">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Email Address</div>
+                <div class="info-value" id="email">--</div>
+                <button class="eye-toggle-small" id="toggleEmail" title="Show/Hide Email">
+                    <i class="fas fa-eye-slash"></i>
+                </button>
+                <button class="copy-btn tappable" data-copy="email" data-label="Copy email address">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Residential Address</div>
+                <div class="info-value" id="address">--</div>
+                <button class="copy-btn tappable" data-copy="address" data-label="Copy residential address">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <i class="fas fa-credit-card"></i>
+            <span>Card Information</span>
+        </div>
+
+        <div class="info-card">
+            <div class="info-row">
+                <div class="info-label">Card Number</div>
+                <div class="info-value" id="cardNumber">****-****-****-****</div>
+                <button class="eye-toggle-small" id="toggleCard" title="Show/Hide Card Number">
+                    <i class="fas fa-eye-slash"></i>
+                </button>
+                <button class="copy-btn tappable" data-copy="cardNumber" data-label="Copy card number">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Card Type</div>
+                <div class="info-value" id="cardType">--</div>
+                <button class="copy-btn tappable" data-copy="cardType" data-label="Copy card type: Debit Card Classic">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Expiry Date</div>
+                <div class="info-value" id="expiryDate">--</div>
+                <button class="eye-toggle-small" id="toggleExpiry" title="Show/Hide Expiry Date">
+                    <i class="fas fa-eye-slash"></i>
+                </button>
+                <button class="copy-btn tappable" data-copy="expiryDate" data-label="Copy expiry date">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Visually Impaired Friendly Notice -->
+        <div class="vi-notice" id="viNotice">
+            <i class="fas fa-universal-access"></i>
+            <span>Visually Impaired Mode: Tap any field to hear its content. Use the eye buttons to show/hide sensitive information.</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="accountInfo.js"></script>
+</body>
+</html>

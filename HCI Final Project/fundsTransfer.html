@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Funds Transfer</title>
+    <link rel="stylesheet" href="fundsTransfer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="page-title">Funds Transfer</span>
+        <div class="nav-spacer"></div>
+    </div>
+
+    <!-- Voice Caption Bar -->
+    <div class="caption-bar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- FROM Section -->
+    <div class="from-label">FROM</div>
+
+    <!-- Beneficiary Modal Card -->
+    <div class="modal-card">
+        <div class="modal-header">
+            <span class="modal-title">Select Beneficiary</span>
+            <button class="close-btn" id="closeBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search Beneficiary" />
+        </div>
+
+        <!-- Beneficiary List -->
+        <!-- Beneficiary List - Will be populated by JavaScript -->
+<div class="beneficiary-list" id="beneficiaryList">
+    <!-- Beneficiaries will load dynamically from users.json -->
+</div>
+    </div>
+
+</div>
+
+<script src="fundsTransfer.js"></script>
+</body>
+</html>

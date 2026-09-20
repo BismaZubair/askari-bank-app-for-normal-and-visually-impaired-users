@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Askari Bank - System Test</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #0a0f1e, #0a1a2f);
+            color: white;
+        }
+        .success { color: #00ff00; background: #00ff0022; padding: 20px; border-radius: 10px; }
+        .error { color: #ff4444; background: #ff000022; padding: 20px; border-radius: 10px; }
+        button {
+            background: #00c8ff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <h1>🏦 Askari Bank - System Test</h1>
+    
+    <div id="result">
+        <button onclick="testSystem()">🔌 Test System</button>
+        <button onclick="location.href='login.html'">🔐 Go to Login</button>
+        <button onclick="location.href='register-face.html'">📸 Register Face</button>
+    </div>
+
+    <script>
+        async function testSystem() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>🔄 Testing backend connection...</p>';
+            
+            try {
+                const response = await fetch('/api/test');
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            ✅ SYSTEM IS WORKING PERFECTLY!<br><br>
+                            Backend Response: ${JSON.stringify(data)}<br><br>
+                            🎯 You can now:<br>
+                            1. Register your face<br>
+                            2. Complete 4-step authentication<br>
+                            3. Login to your account
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error">
+                        ❌ Backend not running!<br><br>
+                        Please start backend:<br>
+                        cd C:\\Users\\M4 Tech\\Downloads\\HCI Final Project\\askari-bank-backend<br>
+                        node server.js
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto test on page load
+        testSystem();
+    </script>
+</body>
+</html>

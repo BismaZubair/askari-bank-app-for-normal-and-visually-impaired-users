@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Card Discounts</title>
+    <link rel="stylesheet" href="cardDiscount.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+        <button class="back-btn" id="backBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="nav-center">
+            <span class="page-title">Card Discounts</span>
+            <div class="city-pill" id="cityPill">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Islamabad</span>
+                <i class="fas fa-chevron-down caret"></i>
+            </div>
+        </div>
+        <div class="nav-spacer"></div>
+    </div>
+
+    <!-- Caption Bar -->
+    <div class="caption-bar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <div class="hero-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+             alt="Card Discounts Hero"
+             class="hero-img"
+             onerror="this.style.display='none'"/>
+        <div class="hero-content">
+            <p class="hero-sub">Exclusive for Askari Cardholders</p>
+            <h1 class="hero-title">Unlock Amazing<br>Discounts</h1>
+            <p class="hero-desc">Dine, shop &amp; explore — your card does more</p>
+        </div>
+    </div>
+
+    <!-- Page Body -->
+    <div class="page-body">
+
+        <!-- CATEGORIES -->
+        <div class="section-row">
+            <h2 class="section-heading">Categories</h2>
+        </div>
+
+        <div class="categories-scroll">
+
+            <div class="cat-card tappable" data-label="Food and Dining category" data-page="#">
+                <div class="cat-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80"
+                         alt="Food" onerror="this.style.background='#e8f4fd'"/>
+                    <div class="cat-gradient"></div>
+                </div>
+                <span class="cat-name">Food</span>
+            </div>
+
+            <div class="cat-card tappable" data-label="Lifestyle category" data-page="#">
+                <div class="cat-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80"
+                         alt="Lifestyle" onerror="this.style.background='#e8f4fd'"/>
+                    <div class="cat-gradient"></div>
+                </div>
+                <span class="cat-name">Lifestyle</span>
+            </div>
+
+            <div class="cat-card tappable" data-label="Entertainment category" data-page="#">
+                <div class="cat-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80"
+                         alt="Entertainment" onerror="this.style.background='#e8f4fd'"/>
+                    <div class="cat-gradient"></div>
+                </div>
+                <span class="cat-name">Entertainment</span>
+            </div>
+
+            <div class="cat-card tappable" data-label="Self Care category" data-page="#">
+                <div class="cat-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=400&q=80"
+                         alt="Self Care" onerror="this.style.background='#e8f4fd'"/>
+                    <div class="cat-gradient"></div>
+                </div>
+                <span class="cat-name">Self Care</span>
+            </div>
+
+            <div class="cat-card tappable" data-label="Travel category" data-page="#">
+                <div class="cat-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&q=80"
+                         alt="Travel" onerror="this.style.background='#e8f4fd'"/>
+                    <div class="cat-gradient"></div>
+                </div>
+                <span class="cat-name">Travel</span>
+            </div>
+
+        </div>
+
+        <!-- NEW OFFERS -->
+        <div class="section-row">
+            <h2 class="section-heading">New Offers</h2>
+            <button class="see-all-btn tappable" data-label="See all new offers" data-page="#">See All</button>
+        </div>
+
+        <div class="offers-scroll">
+
+            <!-- Offer 1: Monal Restaurant -->
+            <div class="offer-card tappable" data-label="20 percent off at The Monal Restaurant" data-page="#">
+                <div class="offer-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400&q=80"
+                         alt="The Monal" onerror="this.style.background='#1a1a2e'"/>
+                    <div class="offer-badge">20% OFF</div>
+                    <div class="offer-logo-chip">
+                        <span>THE<br><b>MONAL</b></span>
+                    </div>
+                </div>
+                <div class="offer-info">
+                    <p class="offer-discount">20% off</p>
+                    <p class="offer-place">The Monal</p>
+                </div>
+            </div>
+
+            <!-- Offer 2: Cinnabon -->
+            <div class="offer-card tappable" data-label="15 percent off at Cinnabon" data-page="#">
+                <div class="offer-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80"
+                         alt="Cinnabon" onerror="this.style.background='#3e2000'"/>
+                    <div class="offer-badge">15% OFF</div>
+                    <div class="offer-logo-chip">
+                        <span>CINNA<br><b>BON</b></span>
+                    </div>
+                </div>
+                <div class="offer-info">
+                    <p class="offer-discount">15% off</p>
+                    <p class="offer-place">Cinnabon</p>
+                </div>
+            </div>
+
+            <!-- Offer 3: Arcadian Cafe -->
+            <div class="offer-card tappable" data-label="25 percent off at Arcadian Cafe" data-page="#">
+                <div class="offer-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&q=80"
+                         alt="Arcadian Cafe" onerror="this.style.background='#2d1b00'"/>
+                    <div class="offer-badge">25% OFF</div>
+                    <div class="offer-logo-chip">
+                        <span>ARCADIAN<br><b>CAFE</b></span>
+                    </div>
+                </div>
+                <div class="offer-info">
+                    <p class="offer-discount">25% off</p>
+                    <p class="offer-place">Arcadian Cafe</p>
+                </div>
+            </div>
+
+            <!-- Offer 4: Hardees -->
+            <div class="offer-card tappable" data-label="10 percent off at Hardees" data-page="#">
+                <div class="offer-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80"
+                         alt="Hardees" onerror="this.style.background='#7a0000'"/>
+                    <div class="offer-badge">10% OFF</div>
+                    <div class="offer-logo-chip">
+                        <span>HARD<br><b>EES</b></span>
+                    </div>
+                </div>
+                <div class="offer-info">
+                    <p class="offer-discount">10% off</p>
+                    <p class="offer-place">Hardees</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- OUR CARDS -->
+        <div class="section-row">
+            <h2 class="section-heading">Our Cards</h2>
+        </div>
+
+        <div class="cards-scroll">
+
+            <div class="bank-card tappable classic-card" data-label="Askari Classic Credit Card" data-page="#">
+                <div class="bank-card-inner">
+                    <div class="card-top-row">
+                        <span class="card-brand-name">askaribank <i class="fas fa-chevron-left card-chevron"></i></span>
+                        <span class="card-tier">classic</span>
+                    </div>
+                    <div class="card-chip"><i class="fas fa-sim-card"></i></div>
+                    <div class="card-number-preview">•••• •••• 3456 7890</div>
+                    <div class="card-bottom-row">
+                        <div class="card-mc"><i class="fas fa-circle mc-left"></i><i class="fas fa-circle mc-right"></i></div>
+                    </div>
+                </div>
+                <p class="card-label">Askari Classic<br>Credit Card</p>
+            </div>
+
+            <div class="bank-card tappable gold-card" data-label="Askari Gold Credit Card" data-page="#">
+                <div class="bank-card-inner">
+                    <div class="card-top-row">
+                        <span class="card-brand-name">askaribank <i class="fas fa-chevron-left card-chevron"></i></span>
+                        <span class="card-tier">gold</span>
+                    </div>
+                    <div class="card-chip"><i class="fas fa-sim-card"></i></div>
+                    <div class="card-number-preview">•••• •••• 3456 7890</div>
+                    <div class="card-bottom-row">
+                        <div class="card-mc"><i class="fas fa-circle mc-left"></i><i class="fas fa-circle mc-right"></i></div>
+                    </div>
+                </div>
+                <p class="card-label">Askari Gold<br>Credit Card</p>
+            </div>
+
+            <div class="bank-card tappable platinum-card" data-label="Askari Platinum Credit Card" data-page="#">
+                <div class="bank-card-inner">
+                    <div class="card-top-row">
+                        <span class="card-brand-name">askaribank <i class="fas fa-chevron-left card-chevron"></i></span>
+                        <span class="card-tier">platinum</span>
+                    </div>
+                    <div class="card-chip"><i class="fas fa-sim-card"></i></div>
+                    <div class="card-number-preview">•••• •••• 3456 7890</div>
+                    <div class="card-bottom-row">
+                        <div class="card-mc"><i class="fas fa-circle mc-left"></i><i class="fas fa-circle mc-right"></i></div>
+                    </div>
+                </div>
+                <p class="card-label">Askari Platinum<br>Credit Card</p>
+            </div>
+
+        </div>
+
+        <!-- bottom padding -->
+        <div style="height:30px"></div>
+
+    </div><!-- end page-body -->
+
+</div>
+
+<script src="cardDiscount.js"></script>
+</body>
+</html>

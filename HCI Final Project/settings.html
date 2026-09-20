@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Askari Bank - Settings</title>
+    <link rel="stylesheet" href="settings.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MAGICAL WAVE CANVAS (TOP + BOTTOM)
+════════════════════════════════════════════════ -->
+<canvas id="waveCanvas" class="wave-canvas"></canvas>
+
+<!-- Floating orbs for depth -->
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="app-container">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+        <button class="back-btn" id="backBtn" title="Go Back">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="page-title">My Profile</span>
+        <div class="nav-spacer"></div>
+    </div>
+
+    <!-- AssistPay Bar (Voice Assistant Toggle) -->
+    <div class="assist-bar">
+        <div class="assist-left">
+            <div class="assist-icon"><i class="fas fa-microphone"></i></div>
+            <div class="assist-text">
+                <span class="assist-title">AssistPay</span>
+                <span class="assist-sub">Voice Assistant is On</span>
+            </div>
+        </div>
+        <label class="toggle-switch">
+            <input type="checkbox" id="assistToggle" checked>
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Caption Bar -->
+    <div class="caption-bar">
+        <i class="fas fa-volume-up caption-icon"></i>
+        <span class="caption-text" id="captionText">Tap anywhere to begin</span>
+    </div>
+
+    <!-- Settings List -->
+    <div class="settings-body">
+
+        <div class="section-label">Personal Settings</div>
+
+        <div class="settings-list">
+
+            <div class="settings-item tappable" data-label="Account Information" data-page="accountInfo.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-id-card"></i></div>
+                    <span>Account Information</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Manage Limit" data-page="manage_limit.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-sliders-h"></i></div>
+                    <span>Manage Limit</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Change Password" data-page="change_password.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-lock"></i></div>
+                    <span>Change Password</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Manage Login Setting" data-page="login_setting.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-user-cog"></i></div>
+                    <span>Manage Login Setting</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Beneficiary Management" data-page="beneficiary.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-user-shield"></i></div>
+                    <span>Beneficiary Management</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Manage Email Alert" data-page="email_alert.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-bell"></i></div>
+                    <span>Manage Email Alert</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Update Personal Information" data-page="personal_info.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-address-card"></i></div>
+                    <span>Update Personal Information</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Manage Subscriptions" data-page="subscriptions.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-envelope-open-text"></i></div>
+                    <span>Manage Subscriptions</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Manage Devices" data-page="devices.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-mobile-alt"></i></div>
+                    <span>Manage Devices</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="F-PIN Generate or Change" data-page="fpin.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-key"></i></div>
+                    <span>F-PIN Generate/Change</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+            <div class="settings-item tappable" data-label="Dormant Account Activation" data-page="dormant.html">
+                <div class="item-left">
+                    <div class="item-icon-wrap"><i class="fas fa-bed"></i></div>
+                    <span>Dormant Account Activation</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </div>
+
+        </div>
+
+        <!-- Done Button -->
+        <button class="done-btn" id="doneBtn">Done</button>
+
+    </div>
+
+</div>
+
+<script src="settings.js"></script>
+</body>
+</html>

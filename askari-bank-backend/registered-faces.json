@@ -1,0 +1,14 @@
+[
+  {
+    "userId": "user1",
+    "userName": "user1",
+    "faceImagePath": "C:\\Users\\M4 Tech\\Downloads\\HCI Final Project\\askari-bank-backend\\stored-faces\\user1.jpeg",
+    "imageFile": "user1.jpeg"
+  },
+  {
+    "userId": "user2",
+    "userName": "user2",
+    "faceImagePath": "C:\\Users\\M4 Tech\\Downloads\\HCI Final Project\\askari-bank-backend\\stored-faces\\user2.jpeg",
+    "imageFile": "user2.jpeg"
+  }
+]
